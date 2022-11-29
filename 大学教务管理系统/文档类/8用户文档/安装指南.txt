@@ -1,0 +1,73 @@
+/*==============================================================*/
+/* file name:  档案管理系统安装指南                             */
+/* Created on: 2004-02-11 12:17:53                              */
+/* CopyRight:  qtj                                              */
+/*==============================================================*/
+
+档案管理系统安装指南
+1、安装windows Advanced server 2000(增加IIS中FTP服务器选项）
+2、进行windows update
+3、安装Oracle 9i(减少HTTP Server选项）,database: oradb
+4、安装JDK
+5、修改IIS端口为8080
+5、安装Tomcat，端口改为80
+6、增加环境变量
+   JAVA_HOME       d:\j2sdk1.4.1_05
+   CATALINA_HOME   d:\Tomcat4.1
+   path  增加      %JAVA_HOME%\bin;C:\Program Files\Oracle\bin;
+   CLASS_PATH      %JAVA_HOME%\lib\tools.jar
+7、测试
+   运行cmd；JAVA;
+8、安装PLSQL Developer
+9、运行PLSQL Developer，配置Oracle
+   username: system
+   password: manager
+   database: oradb
+10、修改C:\systemsoftware\SQL\1.HGAM_DB_CREATE_V1.00.SQL
+    修改其中的路径，块大小
+11、运行C:\systemsoftware\SQL\1.HGAM_DB_CREATE_V1.00.SQL创建表空间、用户并授权
+12、创建初始database
+    C:\systemsoftware\SQL\HGAM_DATA_imp.SQL
+    修改“导入”部分的路径（路径中不能存在空格），数据文件名称
+13、执行C:\systemsoftware\SQL\HGAM_DATA_imp.SQL的“导入”部分
+14、拷贝系统至本地C:\systemsoftware\HGAM
+15、删除C:\Program Files\Apache Group\Tomcat 4.1\webapps\ROOT下所有文件和目录
+16、将系统复制到C:\Program Files\Apache Group\Tomcat 4.1\webapps\ROOT
+17、删除C:\Program Files\Apache Group\Tomcat 4.1\work\Standalone\localhost\_下的所有文件和目录
+18、运行C:\systemsoftware\SQL\HGAM_OA_CREATE_V1.00.SQL创建中间库表空间
+19、运行C:\systemsoftware\SQL\HGAM_OA接口V1.00.SQL创建中间库接口表
+20、LOGIN HGAM
+    username: HGAM
+    password: sunhoo
+21、注意：同义词库已在数据结构导入时创建，现在已可查看
+22、关键字段的修改：field_define表
+23、修改影象页配置文件
+    C:\Program Files\Apache Group\Tomcat 4.1\webapps\ROOT\adc.properties
+    并拷贝至C:\Program Files\Apache Group\Tomcat 4.1\bin下
+24、修改imgqurry.jsp imgproc.cab可以自动下载，注意：该项已修改完成，不需再次修改
+    该文件位置为C:\Program Files\Apache Group\Tomcat 4.1\webapps\ROOT\ImgProc.cab
+25、修改C:\Program Files\Apache Group\Tomcat 4.1\webapps\ROOT\WEB-INF\classes\properties\ibatis\config\db.properties文件
+    中的服务器名称：qtjcbl
+26、安装SQL Server 2000企业版，为SA设置密码，选择本地所有管理员帐户均可启动SQL Server, 为每客户分配10个硬件许可。
+27、安装JDBC补丁
+28、安装SQL Server 2000补丁
+29、启动SQL Server服务
+30、创建SQL Server数据库sunflowDB
+31、打开查询分析器，运行工作流引擎脚本C:\systemsoftware\sunflow\引擎初始化脚本.SQL
+32、拷贝Sunflow目录到c:\
+33、配置环境变量SUNFLOW_HOME = d:\sunflow\engine
+    修改CLASS_PATH为
+     .;%JAVA_HOME%\lib\tools.jar;%JAVA_HOME%\lib\rt.jar;%JAVA_HOME%\lib\dt.jar;
+34、编辑C:\sunflow\engine\config\defaultDB.properties
+35、编辑C:\sunflow\engine\bin\config\org.properties
+    编辑C:\sunflow\engine\config\EngineConfig.properties
+36、启动C:\sunflow\engine\bin\startengine.bat（开机后必须启动）
+37、运行C:\sunflow\newDefiner\SunflowDefiner.bat发布流程C:\sunflow\newDefiner\市规划局.xpl
+进行下一步工作前请先禁用防火墙！！！
+
+引擎配置，username: admin, password: password, 发布地址：qtjcbl, 端口：1093
+发布流程选择，依次选中所有要发布的流程（一定要先选择包），然后发布。
+
+至此，系统已可运行。
+
+
